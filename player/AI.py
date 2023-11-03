@@ -254,42 +254,63 @@ class AI:
         value=0
         for x in range(8):
             for y in range(8):
-                    if gametiles[y][x].pieceonTile.tostring()=='P':
-                        value=value-100
+                if gametiles[y][x].pieceonTile.alliance=='Black':
+                    moves=gametiles[y][x].pieceonTile.legalmoveb(gametiles)
+                    if moves!=None and gametiles[y][x].pieceonTile.tostring()!='K':
+                        value=value-len(moves)*2
+                        value=value+(abs(x-4) + abs(y-4))
+                        for move_ in moves:
+                            if gametiles[move_[0]][move_[1]].pieceonTile.tostring()=='k':
+                                value=value-50
+                            
+                        
+                if gametiles[y][x].pieceonTile.tostring()=='P':
+                    value=value-100
+                    
+                if gametiles[y][x].pieceonTile.tostring()=='N':
+                    value=value-350
 
-                    if gametiles[y][x].pieceonTile.tostring()=='N':
-                        value=value-350
+                if gametiles[y][x].pieceonTile.tostring()=='B':
+                    value=value-350
 
-                    if gametiles[y][x].pieceonTile.tostring()=='B':
-                        value=value-350
+                if gametiles[y][x].pieceonTile.tostring()=='R':
+                    value=value-525
 
-                    if gametiles[y][x].pieceonTile.tostring()=='R':
-                        value=value-525
+                if gametiles[y][x].pieceonTile.tostring()=='Q':
+                    value=value-1000
 
-                    if gametiles[y][x].pieceonTile.tostring()=='Q':
-                        value=value-1000
+                if gametiles[y][x].pieceonTile.tostring()=='K':
+                    value=value-10000
+                
+                if gametiles[y][x].pieceonTile.alliance=='White':
+                    moves=gametiles[y][x].pieceonTile.legalmoveb(gametiles)
+                    if moves!=None and gametiles[y][x].pieceonTile.tostring()!='k':
+                        value=value+len(moves)*2
+                        value=value-(abs(x-4) + abs(y-4))
+                    if self.checkmate==True:
+                        value=value+100000
+                        for move_ in moves:
+                            if gametiles[move_[0]][move_[1]].pieceonTile.tostring()=='k':
+                                value=value+50
+                
+                if gametiles[y][x].pieceonTile.tostring()=='p':
+                    value=value+100
 
-                    if gametiles[y][x].pieceonTile.tostring()=='K':
-                        value=value-10000
+                if gametiles[y][x].pieceonTile.tostring()=='n':
+                    value=value+350
 
-                    if gametiles[y][x].pieceonTile.tostring()=='p':
-                        value=value+100
+                if gametiles[y][x].pieceonTile.tostring()=='b':
+                    value=value+350
 
-                    if gametiles[y][x].pieceonTile.tostring()=='n':
-                        value=value+350
+                if gametiles[y][x].pieceonTile.tostring()=='r':
+                    value=value+525
 
-                    if gametiles[y][x].pieceonTile.tostring()=='b':
-                        value=value+350
+                if gametiles[y][x].pieceonTile.tostring()=='q':
+                    value=value+1000
 
-                    if gametiles[y][x].pieceonTile.tostring()=='r':
-                        value=value+525
-
-                    if gametiles[y][x].pieceonTile.tostring()=='q':
-                        value=value+1000
-
-                    if gametiles[y][x].pieceonTile.tostring()=='k':
-                        value=value+10000
-
+                if gametiles[y][x].pieceonTile.tostring()=='k':
+                    value=value+10000
+        
         return value
 
 
