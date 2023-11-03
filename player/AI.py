@@ -257,7 +257,7 @@ class AI:
                 if gametiles[y][x].pieceonTile.alliance=='Black':
                     moves=gametiles[y][x].pieceonTile.legalmoveb(gametiles)
                     if moves!=None and gametiles[y][x].pieceonTile.tostring()!='K':
-                        value=value-len(moves)*2
+                        value=value-len(moves)
                         value=value+(abs(x-4) + abs(y-4))
                         for move_ in moves:
                             if gametiles[move_[0]][move_[1]].pieceonTile.tostring()=='k':
@@ -285,7 +285,7 @@ class AI:
                 if gametiles[y][x].pieceonTile.alliance=='White':
                     moves=gametiles[y][x].pieceonTile.legalmoveb(gametiles)
                     if moves!=None and gametiles[y][x].pieceonTile.tostring()!='k':
-                        value=value+len(moves)*2
+                        value=value+len(moves)
                         value=value-(abs(x-4) + abs(y-4))
                     if self.checkmate==True:
                         value=value+100000
